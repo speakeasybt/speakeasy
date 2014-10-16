@@ -1,13 +1,24 @@
-# Minimal sample configuration file for Unicorn (not Rack) when used
-# with daemonization (unicorn -D) started in your working directory.
-#
-# See http://unicorn.bogomips.org/Unicorn/Configurator.html for complete
-# documentation.
-# See also http://unicorn.bogomips.org/examples/unicorn.conf.rb for
-# a more verbose configuration using more features.
+# Set the working application directory
+# working_directory "/path/to/your/app"
+working_directory "/var/www/speakeasy"
 
-listen 2007 # by default Unicorn listens on port 8080
-worker_processes 2 # this should be >= nr_cpus
-pid "/var/www/speakeasy/shared/pids/unicorn.pid"
-stderr_path "/var/www/speakeasy/shared/log/unicorn.log"
-stdout_path "/var/www/speakeasy/shared/log/unicorn.log"
+# Unicorn PID file location
+# pid "/path/to/pids/unicorn.pid"
+pid "/var/www/speakeasy/pids/unicorn.pid"
+
+# Path to logs
+# stderr_path "/path/to/log/unicorn.log"
+# stdout_path "/path/to/log/unicorn.log"
+stderr_path "/var/www/speakeasy/log/unicorn.log"
+stdout_path "/var/www/speakeasy/log/unicorn.log"
+
+# Unicorn socket
+listen "/tmp/unicorn.speakeasy.sock"
+listen "/tmp/unicorn.speakeasy.sock"
+
+# Number of processes
+# worker_processes 4
+worker_processes 2
+
+# Time-out
+timeout 30
