@@ -1,0 +1,45 @@
+<div class="content-box">
+  <div class="torrent-header">
+    <h2 class="clean-heading">
+      <%= @torrent.title %>
+      <% if current_user.is_staff? || @torrent.uploader == current_user %>
+        <!-- <%= link_to edit_torrent_path, :class => "admin-update" do %><span class="octicon octicon-pencil"></span><% end %> -->
+        <%= link_to torrent_path, :class => "admin-update", :method => :delete do %><span class="octicon octicon-x"></span><% end %>
+      <% end %>
+    </h2>
+    <span class="torrent-credits">by
+      <%= link_to user_path(@torrent.uploader) do %>
+        <%= @torrent.uploader.username %><% if @torrent.uploader.is_staff? %> <i class="admin">&diams;</i><% end %>
+      <% end %>at <%= @torrent.created_at.strftime("%B %d, %Y, %I:%m%P") %>
+    </span>
+  </div>
+  <div class="torrent-description">
+    <p><%= @torrent.description %></p>
+  </div>
+  <div class="torrent-downloader">
+    <span class="download-title">Download</span>
+    <span class="download-link">
+      <% if @package %>
+        <% if @package.is_available %>
+          <%= link_to "#{@package.file_token}.zip", "/butler/#{@package.file_token}.zip" %>
+        <% else %>
+          <a href="#">Package is being generated...</a>
+        <% end %>
+      <% else %>
+        <% if @transmission[0].percent_done = 1 %>
+          <a href="/torrents/<%= @torrent.id %>/package">Generate Link</a>
+        <% else %>
+          <a href="#">Please wait for download to finish. (<%= (@transmission[0].percent_done * 100).to_i %>% complete)</a>
+        <% end %>
+      <% end %>
+    </span>
+    <span class="download-regen">confidential link, do not distribute</span>
+  </div>
+  <div class="torrent-ratings"></div>
+</div>
+<% if current_user.is_staff? %>
+  <div class="development-debug">
+    <h3>Torrent Debug</h3>
+    <%= @torrent.inspect %>
+  </div>
+<% end %>

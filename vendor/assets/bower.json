@@ -1,0 +1,6 @@
+{
+  "name": "speakeasy",
+  "dependencies": {
+    "octicons": "*"
+  }
+}

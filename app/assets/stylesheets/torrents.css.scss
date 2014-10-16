@@ -1,0 +1,114 @@
+.torrent-list li{
+  list-style-type: none;
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+}
+
+.torrent{
+
+  .torrent-maindata{
+    float: left;
+  }
+
+  .torrent-secondarydata{
+    float: right;
+
+    span{
+      display: block;
+      text-align: right;
+    }
+
+    a{
+      color: #999;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+
+  .torrent-title{
+    a{
+      text-decoration: none;
+      font-weight: bold;
+      color: #000;
+    }
+  }
+
+  .torrent-metadata{
+    font-size: 11px;
+    color: #999;
+    margin-top: 3px;
+
+    .uploader a{
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+}
+
+.torrent-header{
+  padding-bottom: 5px;
+
+  .torrent-credits{
+    display: block;
+    font-size: 11px;
+    padding: 3px 8px;
+
+    a{
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+}
+
+.torrent-description{
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+
+  p{
+    font-size: 16px;
+  }
+}
+
+
+.torrent-downloader{
+  margin: 10px auto;
+  width: 600px;
+  background: #f0f0f0;
+
+  .download-title{
+    display: block;
+    color: #000;
+    font-weight: bold;
+    padding: 15px;
+  }
+
+  .download-link a{
+    display: block;
+    padding: 15px;
+    background: #222;
+    color: #ccc;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 11px;
+    text-decoration: none;
+  }
+    .download-link a:hover{
+      color: #888;
+    }
+
+  .download-regen{
+    display: block;
+    padding: 15px;
+
+    a{
+      text-decoration: none;
+      color: #999;
+    }
+
+    a:hover{
+      color: #777;
+    }
+  }
+}

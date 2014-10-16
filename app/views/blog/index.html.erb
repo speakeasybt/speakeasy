@@ -1,0 +1,16 @@
+<div class="content-box">
+  <h2 class="clean-heading underlined">The Speakeasy Blog</h2>
+  <ul class="blog-post-list">
+    <% @posts.each do |post| %>
+      <li>
+        <div class="blog-post">
+          <div class="post-header">
+            <h3><%= link_to post.title, blog_path(post) %></h3>
+            <span class="post-metadata">posted by anton, <%= post.created_at %></span>
+          </div>
+          <p class="post-content"><%= post.content %></p>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

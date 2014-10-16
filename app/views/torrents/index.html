@@ -1,0 +1,35 @@
+<div class="content-box">
+  <section class="torrent-menu">
+    <h2 class="clean-heading">Torrents</h2>
+    <ul class="torrent-list">
+      <% @torrents.each do |torrent| %>
+        <li>
+          <div class="torrent clearfix">
+            <div class="torrent-maindata">
+              <span class="torrent-title">
+                <%= link_to torrent.title, torrent_path(torrent) %>
+              </span>
+              <div class="torrent-metadata">
+                <span class="uploader">
+                  uploader:
+                  <%= link_to user_path(torrent.uploader) do %>
+                    <%= torrent.uploader.username %>
+                    <% if torrent.uploader.is_staff? %>
+                      <i class="admin">&diams;</i>
+                    <% end %>
+                  <% end %>
+                </span> &bull;
+                <span class="upload-timestamp">
+                  <%= torrent.created_at.strftime("%B %d, %Y, %I:%m%P") %>
+                </span>
+              </div>
+            </div>
+            <div class="torrent-secondarydata">
+              <span class="torrent-category"></span>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</div>

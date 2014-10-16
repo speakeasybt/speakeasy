@@ -1,0 +1,22 @@
+<div class="content-box">
+  <h2 class="clean-heading underlined">New Torrent</h2>
+  <%= form_for @torrent do |torrent| %>
+    <div class="clean-form">
+      <div class="form-element">
+        <%= torrent.label :title %>
+        <%= torrent.text_field :title %>
+      </div>
+      <div class="form-element">
+        <%= torrent.label :torrent_link %>
+        <%= torrent.text_field :torrent_link %>
+      </div>
+      <div class="form-element">
+        <%= torrent.label :description %>
+        <%= torrent.text_area :description %>
+      </div>
+      <div class="form-buttons clearfix">
+        <%= torrent.submit %>
+      </div>
+    </div>
+  <% end %>
+</div>

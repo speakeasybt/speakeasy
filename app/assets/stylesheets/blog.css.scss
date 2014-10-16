@@ -1,0 +1,29 @@
+.blog-post-list{
+}
+  .blog-post-list li{
+    list-style-type: none;
+  }
+
+.blog-post{
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.post-header{
+  padding: 3px 0;
+
+  a{
+    color: #5593c9;
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  .post-metadata{
+    color: #999;
+    font-size: 11px;
+  }
+}
+
+.post-content{
+  padding:8px 0;
+}

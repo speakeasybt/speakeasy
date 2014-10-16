@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Speakeasy</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render 'peek/bar' %>
+  <div class="wrapper">
+    <header class="main-header clearfix">
+      <div class="main-logo">
+        <%= link_to root_path do %><img src="/assets/speakeasy-mark.png" alt="Speakeasy" /><% end %>
+      </div>
+      <nav class="main-nav clearfix">
+        <ul>
+          <% if user_signed_in? %>
+            <li><a href="/torrents/new">Upload</a></li>
+            <li><a href="/rules">Rules</a></li>
+            <li><a href="/blog">Updates</a></li>
+            <% if current_user.is_staff? %>
+              <li><a href="/moderator" class="admin">Moderator</a></li>
+            <% end %>
+            <li>
+              <a href="/users/<%= current_user.id %>"><%= current_user.username %>
+              <% if current_user.is_staff? %><i class="admin">&diams;</i><% end %>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+    <% if notice %>
+      <div class="announcement notice"><%= notice %></div>
+    <% elsif alert %>
+      <div class="announcement alert"><%= alert %></div>
+    <% end %>
+    <%= yield %>
+    <div class="footer">Speakeasy.
+      <% if current_user.is_admin? %>
+        <a href="/admin" class="admin"><span class="octicon octicon-rocket"></span></a>
+      <% end %>
+    </div>
+  </div>
+</body>
+</html>

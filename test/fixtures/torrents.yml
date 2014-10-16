@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  uploader_id: 1
+  file_name: MyString
+  download_count: 1
+  category_id: 1
+  description: MyText
+
+two:
+  title: MyString
+  uploader_id: 1
+  file_name: MyString
+  download_count: 1
+  category_id: 1
+  description: MyText

@@ -1,0 +1,162 @@
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+
+
+body {
+	color: #5d5d5d;
+	background: #ebebe9;
+	font: 13px/1.6em 'Helvetica Neue', sans-serif;
+	height: 100%;
+	line-height: normal;
+}
+
+.octicon{
+  vertical-align: middle;
+}
+
+.wrapper{
+  width: 980px;
+  margin: 0 auto;
+}
+
+.footer{
+  margin: 10px 0;
+  font-weight: bold;
+  color: #aaa;
+  text-align: right;
+}
+
+.announcement{
+  padding: 20px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.announcement.alert{
+  background: #ff5a5f;
+}
+
+.announcement.notice{
+  background: #f27227;
+}
+
+.clean-heading{
+  color: #000;
+  font-weight: 300;
+  font-size: 28px;
+
+  .octicon{
+    vertical-align: middle;
+  }
+
+  .admin-update{
+    color: #999;
+  }
+    .admin-update:hover{
+      color: #777;
+    }
+}
+
+.admin{
+  color: #26bf8c !important;
+}
+
+i.admin{
+  font-style: normal;
+}
+
+.main-header{
+  margin: 15px;
+  height: 100px;
+}
+  .main-logo img{
+    height: 100px;
+    width: 100px;
+    float: left;
+  }
+
+.main-nav{
+  float: left;
+  padding: 36px 10px;
+}
+  .main-nav li{
+    float: left;
+    list-style-type: none;
+    margin: 0 15px;
+  }
+
+  .main-nav a{
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+
+.content-box{
+  background: #fff;
+  margin: 15px auto;
+  padding:25px;
+  box-shadow: 0 1px 3px #ccc;
+}
+
+.clean-form{
+  margin: 10px;
+}
+
+.form-element{
+  margin-bottom: 5px;
+
+  label{
+    display: block;
+    padding: 3px 0;
+    font-weight: bold;
+  }
+
+  input{
+    padding:5px 8px;
+    border: 1px solid #ccc;
+    width: 320px;
+  }
+
+  textarea{
+    max-width: 320px;
+    width: 320px;
+    height: 120px;
+    border: 1px solid #ccc;
+    resize: none;
+  }
+}
+
+.form-buttons{
+  width: 320px;
+  input{
+    background: #5593c9;
+    font-weight: bold;
+    color: #fff;
+    border: 0;
+    padding: 15px;
+    float: right;
+  }
+}
+
+.development-debug{
+  background: #444;
+  padding: 15px;
+  color: #fff;
+}
