@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  TRANSMISSION_COMPLETED = "/home/speakeasy/speakeasy-downloads/transmission/completed"
+  TRANSMISSION_COMPLETED = "/home/speakeasy/speakeasy-downloads/transmission/complete"
   # Code is not reloaded between requests.
   config.cache_classes = true
 
