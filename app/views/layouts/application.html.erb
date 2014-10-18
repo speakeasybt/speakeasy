@@ -38,7 +38,7 @@
     <% end %>
     <%= yield %>
     <div class="footer">Speakeasy.
-      <% if current_user.is_admin? %>
+      <% if current_user && current_user.is_admin? %>
         <a href="/admin" class="admin"><span class="octicon octicon-rocket"></span></a>
       <% end %>
     </div>
