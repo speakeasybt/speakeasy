@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def peek_enabled?
-    current_user.is_staff?
+    current_user.is_staff? if current_user
   end
 
   def configure_permitted_parameters
