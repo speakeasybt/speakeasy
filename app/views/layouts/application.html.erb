@@ -24,7 +24,7 @@
             <% end %>
             <li>
               <a href="/users/<%= current_user.id %>"><%= current_user.username %>
-              <% if current_user.is_staff? %><i class="admin">&diams;</i><% end %>
+              <% if current_user && current_user.is_staff? %><i class="admin">&diams;</i><% end %>
               </a>
             </li>
           <% end %>
