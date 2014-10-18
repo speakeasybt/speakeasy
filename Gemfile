@@ -23,4 +23,4 @@ gem 'peek-mysql2'
 gem 'peek-redis'
 gem 'better_errors', group: :development
 gem 'binding_of_caller', group: :development
-gem 'execjs', group: :production
+gem 'therubyracer', group: :production
