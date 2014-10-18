@@ -52,3 +52,4 @@ production:
   database: speakeasy_production
   username: speakeasy
   password: <%= ENV['SPEAKEASY_DATABASE_PASSWORD'] %>
+  socket: /var/run/mysqld/mysqld.sock
