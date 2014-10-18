@@ -8,7 +8,7 @@ class TorrentsController < ApplicationController
 
   def show
     @torrent = Torrent.find_by_id params[:id]
-    @transmission = Transmission.torrents.select { |x| x.hash == @torrent.transmission_hash }
+    @transmission = Transmission.torrents.select { |x| x.hash == "#{@torrent.transmission_hash}" }
     @package = Package.find_by_torrent_id params[:id]
   end
 
@@ -26,7 +26,7 @@ class TorrentsController < ApplicationController
     transmission = Transmission::RPC::Torrent + "#{params[:torrent][:torrent_link]}"
 
     # add file_name
-    torrent.file_name = transmission.name
+    torrent.file_name = transmission.name.gsub('+',' ') # plus sign messes with zipping, thanks transmission
     torrent.transmission_hash = transmission.hash
 
     if transmission && torrent.save
@@ -39,7 +39,7 @@ class TorrentsController < ApplicationController
   def destroy
     torrent = Torrent.find_by_id(params[:id])
     # delete from transmission
-    transmission = Transmission.torrents.select { |x| x.hash == torrent.transmission_hash }
+    transmission = Transmission.torrents.select { |x| x.hash == "#{torrent.transmission_hash}" }
     if transmission
       transmission[0].delete!(true)
       torrent.destroy
