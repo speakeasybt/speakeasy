@@ -40,9 +40,10 @@ class TorrentsController < ApplicationController
     torrent = Torrent.find_by_id(params[:id])
     # delete from transmission
     transmission = Transmission.torrents.select { |x| x.hash == "#{torrent.transmission_hash}" }
-    if transmission
+    if transmission && torrent
       transmission[0].delete!(true)
       torrent.destroy
+      system('rm','-rf', "#{TRANSMISSION_COMPLETED}/#{torrent.file_name}")
       redirect_to root_url, :notice => "Torrent deleted."
     else
       redirect_to root_url, :alert => "An error occured while attempting to delete torrent."

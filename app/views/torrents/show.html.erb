@@ -21,12 +21,12 @@
     <span class="download-link">
       <% if @package %>
         <% if @package.is_available %>
-          <%= link_to "#{@package.file_token}.zip", "/butler/#{@package.file_token}.zip" %>
+          <%= link_to "#{@package.file_token}.7z", "/butler/#{@package.file_token}.7z" %>
         <% else %>
           <a href="#">Package is being generated...</a>
         <% end %>
       <% else %>
-        <% if @transmission[0].percent_done = 1 %>
+        <% if @transmission[0].eta = "-1" %>
           <a href="/torrents/<%= @torrent.id %>/package">Generate Link</a>
         <% else %>
           <a href="#">Please wait for download to finish. (<%= (@transmission[0].percent_done * 100).to_i %>% complete)</a>
