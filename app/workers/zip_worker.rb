@@ -9,7 +9,11 @@ class ZipWorker
       if package
         package.update(:is_available => true)
         package.save
+        # delete file
         system('rm','-rf', "#{TRANSMISSION_COMPLETED}/#{file_name}")
+        # delete torrent from transmission
+        torrent = Torrent.find_by id: torrent_id
+        torrent.transmission.delete!(true)
       else
         raise "package not found - #{torrent_id}"
       end

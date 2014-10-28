@@ -35,9 +35,8 @@ class TorrentsController < ApplicationController
 
   def destroy
     torrent = Torrent.find_by_id(params[:id])
-    # delete from transmission
+    # delete from butler
     if torrent
-      torrent.transmission.delete!(true)
       system('rm','-rf', "#{SPEAKEASY_BUTLER}/#{torrent.file_name}")
       torrent.destroy
       redirect_to root_url, :notice => "Torrent deleted."
