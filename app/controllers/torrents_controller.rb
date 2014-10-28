@@ -7,9 +7,7 @@ class TorrentsController < ApplicationController
   end
 
   def show
-    @torrent = Torrent.find_by_id params[:id]
-    @transmission = Transmission.torrents.select { |x| x.hash == "#{@torrent.transmission_hash}" }
-    @package = Package.find_by_torrent_id params[:id]
+    @torrent = Torrent.find_by id: params[:id]
   end
 
   def new
@@ -25,8 +23,7 @@ class TorrentsController < ApplicationController
     # add torrent into transmission
     transmission = Transmission::RPC::Torrent + "#{params[:torrent][:torrent_link]}"
 
-    # add file_name
-    torrent.file_name = transmission.name.gsub('+',' ') # plus sign messes with zipping, thanks transmission
+    # add transmission_hash
     torrent.transmission_hash = transmission.hash
 
     if transmission && torrent.save
@@ -39,11 +36,9 @@ class TorrentsController < ApplicationController
   def destroy
     torrent = Torrent.find_by_id(params[:id])
     # delete from transmission
-    transmission = Transmission.torrents.select { |x| x.hash == "#{torrent.transmission_hash}" }
-    if transmission && torrent
-      transmission[0].delete!(true)
+    if torrent
+      torrent.transmission.delete!(true)
       torrent.destroy
-      system('rm','-rf', "#{TRANSMISSION_COMPLETED}/#{torrent.file_name}")
       redirect_to root_url, :notice => "Torrent deleted."
     else
       redirect_to root_url, :alert => "An error occured while attempting to delete torrent."
@@ -60,10 +55,15 @@ class TorrentsController < ApplicationController
       # create package
       Package.create(:torrent_id => torrent.id, :user_id => current_user.id, :file_token => token)
 
-      # create zip
-      ZipWorker.perform_async(torrent.id, token, torrent.file_name)
-
-      redirect_to torrent_path(torrent.id), :notice => "Packaging process has started."
+      # set file name now that transmission has everything ready
+      torrent.file_name = torrent.transmission.name
+      if torrent.save
+        # create zip
+        ZipWorker.perform_async(torrent.id, token, torrent.file_name)
+        redirect_to torrent_path(torrent.id), :notice => "Packaging process has started."
+      else
+        redirect_to torrent_path(torrent.id), :alert => "Error occured (invalid file name)"
+      end
     else
       redirect_to root_url, :alert => "Invalid packaging request!"
     end

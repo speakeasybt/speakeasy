@@ -3,4 +3,8 @@ class Torrent < ActiveRecord::Base
   validates :transmission_hash, :uniqueness => true
   belongs_to :uploader, class_name: "User"
   has_one :package, dependent: :destroy
+
+  def transmission
+    Transmission.torrents.find { |torrent| torrent.hash == "#{self.transmission_hash}" }
+  end
 end
