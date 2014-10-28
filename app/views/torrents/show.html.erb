@@ -26,7 +26,7 @@
           <a href="#">Package is being generated... (This may take several minutes)</a>
         <% end %>
       <% else %>
-        <% if @torrent.transmission.percent_done = 1 %>
+        <% if @torrent.transmission.percent_done == 1 %>
           <a href="/torrents/<%= @torrent.id %>/package">Generate Link</a>
         <% else %>
           <a href="#">Please wait for download to finish. (<%= (@torrent.transmission.percent_done * 100).to_i %>% complete)</a>
