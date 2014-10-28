@@ -2,7 +2,7 @@ class ZipWorker
   include Sidekiq::Worker
   sidekiq_options queue: "high"
 
-  def perform(torrent_id, token)
+  def perform(torrent_id, token, file_name)
     if File.exist?("#{TRANSMISSION_COMPLETED}/#{file_name}")
       system('7z','a', '-r', "#{SPEAKEASY_BUTLER}/#{token}.7z", "#{TRANSMISSION_COMPLETED}/#{file_name}")
       package = Package.find_by torrent_id: torrent_id
