@@ -38,6 +38,7 @@ class TorrentsController < ApplicationController
     # delete from transmission
     if torrent
       torrent.transmission.delete!(true)
+      system('rm','-rf', "#{SPEAKEASY_BUTLER}/#{torrent.file_name}")
       torrent.destroy
       redirect_to root_url, :notice => "Torrent deleted."
     else
