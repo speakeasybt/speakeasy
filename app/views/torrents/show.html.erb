@@ -21,7 +21,7 @@
     <span class="download-link">
       <% if @torrent.package %>
         <% if @torrent.package.is_available %>
-          <%= link_to "#{@torrent.package.file_token}.7z", "#{SPEAKEASY_BUTLER_URL}/#{@torrent.package.file_token}.7z" %>
+          <%= link_to "#{@torrent.package.file_token}.zip", "#{SPEAKEASY_BUTLER_URL}/#{@torrent.package.file_token}.zip" %>
         <% else %>
           <a href="#">Package is being generated... (This may take several minutes)</a>
         <% end %>
