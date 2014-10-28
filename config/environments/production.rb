@@ -2,6 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   TRANSMISSION_COMPLETED = "/home/speakeasy/speakeasy-downloads/transmission/complete"
   SPEAKEASY_BUTLER = "/var/www/butler.gospeakeasy.me"
+  SPEAKEASY_BUTLER_URL = "http://butler.gospeakeasy.me"
   # Code is not reloaded between requests.
   config.cache_classes = true
 
