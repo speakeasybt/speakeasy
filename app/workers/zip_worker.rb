@@ -1,6 +1,6 @@
 class ZipWorker
   include Sidekiq::Worker
-  sidekiq_options queue: "high"
+  sidekiq_options queue: "high", retry: false
 
   def perform(torrent_id, token, file_name)
     if File.exist?("#{TRANSMISSION_COMPLETED}/#{file_name}")
@@ -11,6 +11,11 @@ class ZipWorker
         package.save
         # delete file
         system('rm','-rf', "#{TRANSMISSION_COMPLETED}/#{file_name}")
+
+        # a very sad workaround
+        # transmission daemon sometimes fails to respond without restart
+        system('transmission-daemon')
+
         # delete torrent from transmission
         torrent = Torrent.find_by id: torrent_id
         torrent.transmission.delete!(true)
