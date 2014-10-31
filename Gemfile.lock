@@ -1,5 +1,6 @@
-PATH
-  remote: ~/code/transmission-rpc
+GIT
+  remote: git://github.com/antn/transmission-rpc.git
+  revision: 001fcf948b14e9c8c918df1b0108187a2ab80318
   specs:
     transmission-rpc (0.1.1)
       activesupport
@@ -88,6 +89,8 @@ GEM
     peek (0.1.9)
       atomic (>= 1.0.0)
       railties (>= 3.0.0)
+    peek-git (1.0.2)
+      peek
     peek-mysql2 (1.1.0)
       atomic (>= 1.0.0)
       mysql2
@@ -201,6 +204,7 @@ DEPENDENCIES
   jquery-rails
   mysql2
   peek
+  peek-git
   peek-mysql2
   peek-performance_bar
   peek-redis
