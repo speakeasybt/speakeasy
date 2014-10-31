@@ -12,11 +12,9 @@ class ZipWorker
         # delete file
         system('rm','-rf', "#{TRANSMISSION_COMPLETED}/#{file_name}")
 
-        # a very sad workaround
-        # transmission daemon sometimes fails to respond without restart
-        system('transmission-daemon')
-
         # delete torrent from transmission
+        # transmission-rpc stops responding after a while
+        Transmission::RPC::Client.force_session_id!
         torrent = Torrent.find_by id: torrent_id
         torrent.transmission.delete!(true)
       else
