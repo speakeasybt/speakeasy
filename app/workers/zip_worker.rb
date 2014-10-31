@@ -4,7 +4,7 @@ class ZipWorker
 
   def perform(torrent_id, token, file_name)
     if File.exist?("#{TRANSMISSION_COMPLETED}/#{file_name}")
-      system('zip','-r', '-9', '-j', "#{SPEAKEASY_BUTLER}/#{token}.zip", "#{TRANSMISSION_COMPLETED}/#{file_name}")
+      system('zip','-r', '-9', "#{SPEAKEASY_BUTLER}/#{token}.zip", "#{TRANSMISSION_COMPLETED}/#{file_name}")
       package = Package.find_by torrent_id: torrent_id
       if package
         package.update(:is_available => true)
