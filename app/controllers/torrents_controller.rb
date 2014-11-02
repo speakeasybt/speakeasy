@@ -21,6 +21,7 @@ class TorrentsController < ApplicationController
     torrent.uploader_id = current_user.id
 
     # add torrent into transmission
+    Transmission::RPC::Client.force_session_id!
     transmission = Transmission::RPC::Torrent + "#{params[:torrent][:torrent_link]}"
 
     # add transmission_hash
