@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'torrents#index'
   resources :torrents
   get 'torrents/:id/package', to: 'torrents#package'
+  get 'torrents/:id/restore', to: 'torrents#restore'
   resources :user
   resources :blog
   get 'rules', to: 'static#rules'

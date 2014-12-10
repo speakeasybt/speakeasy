@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     current_user.is_staff? if current_user
   end
 
+  def log_event(torrent)
+    current_user.events.create! torrent_id: torrent.id, action: params[:action], metadata: torrent.inspect
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation) }
   end

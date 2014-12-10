@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :trackable, :validatable
   validates :username, :uniqueness => true
   has_many :torrents
+  has_many :events
 
   def is_staff?
     self.is_moderator? || self.is_admin?
