@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016032158) do
+ActiveRecord::Schema.define(version: 20141208234813) do
 
   create_table "blog_posts", force: true do |t|
     t.string   "title"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20141016032158) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "torrent_id"
+    t.string   "action"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "metadata"
   end
 
   create_table "packages", force: true do |t|
@@ -36,6 +45,7 @@ ActiveRecord::Schema.define(version: 20141016032158) do
     t.integer  "uploader_id"
     t.string   "file_name"
     t.string   "transmission_hash"
+    t.boolean  "soft_delete",       default: false
     t.integer  "download_count"
     t.integer  "category_id"
     t.datetime "created_at"

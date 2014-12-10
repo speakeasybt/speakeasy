@@ -52,12 +52,28 @@
   .torrent-credits{
     display: block;
     font-size: 11px;
-    padding: 3px 8px;
+    padding: 3px 0;
 
     a{
       color: #000;
       font-weight: bold;
       text-decoration: none;
+    }
+  }
+
+  .torrent-tools{
+    float: right;
+
+    .octicon{
+      vertical-align: middle;
+    }
+
+    .admin-update{
+      color: #999;
+      display: inline-block;
+    }
+    .admin-update:hover{
+      color: #777;
     }
   }
 }

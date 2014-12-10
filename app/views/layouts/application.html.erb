@@ -23,8 +23,10 @@
               <li><a href="/moderator" class="admin">Moderator</a></li>
             <% end %>
             <li>
-              <a href="/users/<%= current_user.id %>"><%= current_user.username %>
-              <% if current_user && current_user.is_staff? %><i class="admin">&diams;</i><% end %>
+              <%= link_to destroy_user_session_path, :method => :delete, :data => {:confirm => "Logout?"} do %>
+                <%= current_user.username %>
+                <% if current_user.is_staff? %><i class="admin">&diams;</i><% end %>
+              <% end %>
               </a>
             </li>
           <% end %>
@@ -39,7 +41,7 @@
     <%= yield %>
     <div class="footer">Speakeasy.
       <% if current_user && current_user.is_admin? %>
-        <a href="/admin" class="admin"><span class="octicon octicon-rocket"></span></a>
+        <a href="/admin/sidekiq" class="admin"><span class="octicon octicon-rocket"></span></a>
       <% end %>
     </div>
   </div>

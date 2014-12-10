@@ -2,15 +2,22 @@
   <div class="torrent-header">
     <h2 class="clean-heading">
       <%= @torrent.title %>
-      <% if current_user.is_staff? || @torrent.uploader == current_user %>
-        <!-- <%= link_to edit_torrent_path, :class => "admin-update" do %><span class="octicon octicon-pencil"></span><% end %> -->
-        <%= link_to torrent_path, :class => "admin-update", :method => :delete do %><span class="octicon octicon-x"></span><% end %>
-      <% end %>
     </h2>
+    <span class="torrent-tools">
+      <% if current_user.is_staff? || @torrent.uploader == current_user %>
+        <%= link_to edit_torrent_path, :class => "admin-update" do %>
+          <span class="octicon octicon-pencil"></span>
+        <% end %>
+        <%= link_to torrent_path, :class => "admin-update", :method => :delete,
+        :data => {:confirm => "Are you sure you want to delete this torrent?"} do %>
+          <span class="octicon octicon-x"></span>
+        <% end %>
+      <% end %>
+    </span>
     <span class="torrent-credits">by
       <%= link_to user_path(@torrent.uploader) do %>
         <%= @torrent.uploader.username %><% if @torrent.uploader.is_staff? %> <i class="admin">&diams;</i><% end %>
-      <% end %>at <%= @torrent.created_at.strftime("%B %d, %Y, %I:%m%P") %>
+      <% end %>at <%= @torrent.uploaded_at %>
     </span>
   </div>
   <div class="torrent-description">
@@ -37,9 +44,3 @@
   </div>
   <div class="torrent-ratings"></div>
 </div>
-<% if current_user.is_staff? %>
-  <div class="development-debug">
-    <h3>Torrent Debug</h3>
-    <%= @torrent.inspect %>
-  </div>
-<% end %>

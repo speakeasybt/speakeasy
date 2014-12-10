@@ -1,13 +1,14 @@
 class TorrentsController < ApplicationController
   before_action :torrent_params
-  before_action :check_staff_authorization, :only => [:update, :destroy]
+  before_action :check_staff_authorization, :only => [:restore]
+  before_action :check_editable, :only => [:edit, :update, :destroy]
 
   def index
-    @torrents = Torrent.all.order("id desc")
+    @torrents = Torrent.active.order("created_at desc")
   end
 
   def show
-    @torrent = Torrent.find_by id: params[:id]
+    @torrent = Torrent.active.find_by id: params[:id]
   end
 
   def new
@@ -15,10 +16,8 @@ class TorrentsController < ApplicationController
   end
 
   def create
-    torrent = Torrent.new
-    torrent.title = params[:torrent][:title]
-    torrent.description = params[:torrent][:description]
-    torrent.uploader_id = current_user.id
+    torrent = Torrent.new title: params[:torrent][:title],
+      description: params[:torrent][:description], uploader_id: current_user.id
 
     # add torrent into transmission
     Transmission::RPC::Client.force_session_id!
@@ -28,23 +27,50 @@ class TorrentsController < ApplicationController
     torrent.transmission_hash = transmission.hash
 
     if transmission && torrent.save
+      log_event torrent
       redirect_to root_url, :notice => "Successfull added #{torrent.title}"
     else
       redirect_to new_torrent_url, :alert => "An error occured. #{params[:torrent]}"
     end
   end
 
+  def edit
+    @torrent = Torrent.active.find_by id: params[:id]
+  end
+
+  def update
+    torrent = Torrent.active.find_by id: params[:id]
+    if torrent
+      torrent.update params
+    else
+      redirect_to root_url, :alert => "Invalid torrent."
+    end
+  end
+
   def destroy
-    torrent = Torrent.find_by_id(params[:id])
+    torrent = Torrent.find_by id: params[:id]
     # delete from butler
     if torrent
       if torrent.package
         system('rm','-rf', "#{SPEAKEASY_BUTLER}/#{torrent.package.file_token}.zip")
+        torrent.package.destroy!
       end
-      torrent.destroy
+      log_event torrent
+      torrent.update soft_delete: true
       redirect_to root_url, :notice => "Torrent deleted."
     else
       redirect_to root_url, :alert => "An error occured while attempting to delete torrent."
+    end
+  end
+
+  def restore
+    torrent = Torrent.find_by id: params[:id]
+    if torrent
+      torrent.update! soft_delete: false
+      log_event torrent
+      redirect_to torrent_path(torrent), :notice => "Restored torrent."
+    else
+      redirect_to root_url, :alert => "Invalid torrent."
     end
   end
 
@@ -63,6 +89,7 @@ class TorrentsController < ApplicationController
       if torrent.save
         # create zip
         ZipWorker.perform_async(torrent.id, token, torrent.file_name)
+        log_event torrent
         redirect_to torrent_path(torrent.id), :notice => "Packaging process has started."
       else
         redirect_to torrent_path(torrent.id), :alert => "Error occured (invalid file name)"
@@ -75,5 +102,12 @@ class TorrentsController < ApplicationController
   private
     def torrent_params
       params.permit(:torrent, :title, :uploader_id, :file_name, :download_count, :category_id, :description)
+    end
+
+    def check_editable
+      torrent = Torrent.active.find_by_id params[:id]
+      if !torrent.editable_by? current_user
+        redirect_to root_url, :alert => "You're not authorized to do that."
+      end
     end
 end
