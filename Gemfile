@@ -22,6 +22,7 @@ gem 'peek-sidekiq'
 gem 'peek-mysql2'
 gem 'peek-redis'
 gem 'peek-git'
+gem 'gravtastic'
 gem 'better_errors', group: :development
 gem 'binding_of_caller', group: :development
 gem 'therubyracer', group: :production

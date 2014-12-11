@@ -23,7 +23,7 @@
               <li><a href="/moderator" class="admin">Moderator</a></li>
             <% end %>
             <li>
-              <%= link_to destroy_user_session_path, :method => :delete, :data => {:confirm => "Logout?"} do %>
+              <%= link_to user_path current_user do %>
                 <%= current_user.username %>
                 <% if current_user.is_staff? %><i class="admin">&diams;</i><% end %>
               <% end %>

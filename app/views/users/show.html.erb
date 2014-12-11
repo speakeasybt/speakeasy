@@ -1,0 +1,42 @@
+<div class="content-box">
+  <div class="user-profile">
+    <%= image_tag @user.gravatar_url %>
+    <h2>
+      <%= @user.username %>
+      <% if @user.is_staff? %>
+        <i class="admin">&diams;</i>
+      <% end %>
+    </h2>
+  </div>
+  <div class="user-torrents">
+    <h3>Uploaded Torrents</h3>
+    <ul>
+      <ul class="torrent-list">
+        <% @user.torrents.active.each do |torrent| %>
+        <li>
+          <div class="torrent clearfix">
+            <div class="torrent-maindata">
+              <span class="torrent-title">
+                <%= link_to torrent.title, torrent_path(torrent) %>
+              </span>
+              <div class="torrent-metadata">
+                <span class="upload-timestamp">
+                  <%= torrent.uploaded_at %>
+                </span>
+              </div>
+            </div>
+            <div class="torrent-secondarydata">
+              <span class="torrent-category"></span>
+            </div>
+          </div>
+        </li>
+        <% end %>
+      </ul>
+    </ul>
+  </div>
+  <% if current_user.is_staff? %>
+    <div class="user-events">
+      <%= render 'moderator/events' %>
+    </div>
+  <% end %>
+</div>
