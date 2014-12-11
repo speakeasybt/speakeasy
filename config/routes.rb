@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :torrents
   get 'torrents/:id/package', to: 'torrents#package'
   get 'torrents/:id/restore', to: 'torrents#restore'
-  resources :user
+  resources :users
   resources :blog
   get 'rules', to: 'static#rules'
   namespace :moderator do
