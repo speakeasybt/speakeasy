@@ -1,0 +1,16 @@
+<div class="event-log">
+  <h3>Event Log - Last 15 Events</h3>
+  <ul>
+    <% @events.each do |event| %>
+    <li>
+      <a href="#" class="log-container">
+        <div class="log-cell"><%= event.user.username %></div>
+        <div class="log-cell"><%= event.torrent.title %></div>
+        <div class="log-cell"><%= event.action %></div>
+        <div class="log-cell log-date"><%= event.created_at %></div>
+      </a>
+      <div class="log-metadata"><%= event.metadata %></div>
+    </li>
+    <% end %>
+  </ul>
+</div>

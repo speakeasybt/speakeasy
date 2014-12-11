@@ -34,4 +34,9 @@
       </ul>
     </ul>
   </div>
+  <% if current_user.is_staff? %>
+    <div class="user-events">
+      <%= render 'moderator/events' %>
+    </div>
+  <% end %>
 </div>
