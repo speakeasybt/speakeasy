@@ -18,9 +18,7 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'peek'
 gem 'peek-performance_bar'
-gem 'peek-sidekiq'
 gem 'peek-mysql2'
-gem 'peek-redis'
 gem 'peek-git'
 gem 'gravtastic'
 gem 'better_errors', group: :development
