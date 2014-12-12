@@ -9,6 +9,10 @@ Install the transmission-rpc gem and have zip installed on your server
 
 Change the paths in config/environments/production.rb and config/environments/development.rb
 
+## Screenshots
+![homepage](https://i.imgur.com/tdSWtpe.png)
+![torrent page](https://i.imgur.com/B0cgneX.png)
+
 ## DISCLAIMER
 
 This is a work in progress and not everything works. Use at your own risk.
