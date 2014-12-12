@@ -1,8 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  TRANSMISSION_COMPLETED = "/Users/anton/Downloads"
-  SPEAKEASY_BUTLER = "/Users/anton/Downloads"
-  SPEAKEASY_BUTLER_URL = "file:///Users/anton/Downloads"
+  TRANSMISSION_COMPLETED = "PATH/TO/TRANSMISSION/COMPLETED/TORRENTS"
+  SPEAKEASY_BUTLER = "PATH/TO/LOCAL/DOWNLOADS"
+  SPEAKEASY_BUTLER_URL = "URL_OF_SERVER"
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

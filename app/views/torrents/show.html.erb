@@ -5,9 +5,9 @@
     </h2>
     <span class="torrent-tools">
       <% if current_user.is_staff? || @torrent.uploader == current_user %>
-        <%= link_to edit_torrent_path, :class => "admin-update" do %>
+        <!-- <%= link_to edit_torrent_path, :class => "admin-update" do %>
           <span class="octicon octicon-pencil"></span>
-        <% end %>
+        <% end %> -->
         <%= link_to torrent_path, :class => "admin-update", :method => :delete,
         :data => {:confirm => "Are you sure you want to delete this torrent?"} do %>
           <span class="octicon octicon-x"></span>
