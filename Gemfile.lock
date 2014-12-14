@@ -98,14 +98,6 @@ GEM
       peek
     peek-performance_bar (1.1.6)
       peek (>= 0.1.0)
-    peek-redis (1.1.0)
-      atomic (>= 1.0.0)
-      peek
-      redis
-    peek-sidekiq (1.0.3)
-      atomic (>= 1.0.0)
-      peek
-      sidekiq
     polyglot (0.3.5)
     rack (1.5.2)
     rack-protection (1.5.3)
@@ -209,8 +201,6 @@ DEPENDENCIES
   peek-git
   peek-mysql2
   peek-performance_bar
-  peek-redis
-  peek-sidekiq
   rails (= 4.1.5)
   rubyzip
   sass-rails (~> 4.0.3)
