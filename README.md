@@ -1,4 +1,4 @@
-# Speakeasy
+# Speakeasy [![Code Climate](https://codeclimate.com/github/speakeasybt/speakeasy/badges/gpa.svg)](https://codeclimate.com/github/speakeasybt/speakeasy)
 A simple solution for torrent management and downloads.
 
 ## Requirements
