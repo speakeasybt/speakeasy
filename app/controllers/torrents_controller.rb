@@ -9,10 +9,12 @@ class TorrentsController < ApplicationController
 
   def show
     @torrent = Torrent.active.find_by id: params[:id]
+    @page_title = @torrent.title
   end
 
   def new
     @torrent = Torrent.new
+    @page_title = "Upload Torrent"
   end
 
   def create
