@@ -3,7 +3,7 @@ A simple solution for torrent management and downloads.
 
 ## Requirements
 
-Install the transmission-rpc gem and have zip installed on your server
+Install the transmission-rpc gem and have zip installed on your server, as well as redis for sidekiq.
 
 ## Setup
 
